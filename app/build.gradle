@@ -18,10 +18,16 @@ android {
     }
     signingConfigs {
         debug {
-            storeFile file('debug.keystore')
-            storePassword "android"
-            keyAlias "androiddebugkey"
-            keyPassword "android"
+            storeFile file('everywheretravel.jks')
+            storePassword "123456"
+            keyAlias "everywheretrip"
+            keyPassword "123456"
+        }
+        release {
+            storeFile file('everywheretravel.jks')
+            storePassword "123456"
+            keyAlias "everywheretrip"
+            keyPassword "123456"
         }
     }
 }
@@ -90,6 +96,12 @@ dependencies {
     //jsoup 解析html数据
     implementation 'org.jsoup:jsoup:1.11.3'
 
+    //  侧滑弹出删除按钮删除item
     implementation 'com.yanzhenjie:recyclerview-swipe:1.1.4'
 
+    // 替代webview
+    implementation 'com.just.agentweb:agentweb:4.0.3-alpha@aar'
+
+    // 状态栏
+    implementation 'com.jaeger.statusbarutil:library:1.5.1'
 }

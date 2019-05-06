@@ -28,14 +28,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_106"
+        android:layout_marginTop="@dimen/dp_102"
         android:layout_marginLeft="@dimen/dp_31">
 
         <ImageView
             android:id="@+id/phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/phone"/>
+            android:src="@mipmap/phone"
+            android:layout_centerVertical="true"/>
 
         <TextView
             android:id="@+id/area"
@@ -44,7 +45,8 @@
             android:text="+86"
             android:layout_marginLeft="@dimen/dp_8"
             android:layout_toRightOf="@id/phone"
-            android:layout_marginTop="@dimen/dp_3"/>
+            android:layout_marginTop="@dimen/dp_3"
+            android:layout_centerVertical="true"/>
 
         <ImageView
             android:id="@+id/select"
@@ -52,17 +54,22 @@
             android:layout_height="@dimen/dp_5"
             android:src="@mipmap/select"
             android:layout_toRightOf="@id/area"
-            android:layout_marginTop="@dimen/dp_12"/>
+            android:layout_marginTop="@dimen/dp_12"
+            android:layout_centerVertical="true"/>
 
         <EditText
             android:id="@+id/phone_number"
             android:layout_toRightOf="@id/select"
-            android:layout_toLeftOf="@id/btn"
+            android:layout_toLeftOf="@id/send_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:hint="请输入手机号"
-            android:layout_marginLeft="@dimen/dp_16"/>
+            android:textSize="@dimen/sp_18"
+            android:inputType="phone"
+            android:singleLine="true"
+            android:layout_marginLeft="@dimen/dp_16"
+            android:layout_centerVertical="true"/>
 
         <Button
             android:id="@+id/send_code"
@@ -73,16 +80,18 @@
             android:layout_alignParentRight="true"
             android:textSize="@dimen/sp_14"
             android:layout_marginRight="@dimen/dp_22"
-            android:background="@mipmap/button_unavailable"/>
+            android:background="@drawable/shape_send_code_dark"
+            />
 
     </RelativeLayout>
 
     <View
-        android:layout_width="@dimen/dp_329"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/dp_1"
         android:background="@color/c_fa6a13"
         android:layout_marginLeft="@dimen/dp_23"
-        android:layout_marginRight="@dimen/dp_23" />
+        android:layout_marginRight="@dimen/dp_23"
+        android:layout_marginTop="@dimen/dp_5"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -92,9 +101,10 @@
         android:gravity="center_horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="-"/>
+            android:layout_width="@dimen/dp_15"
+            android:layout_height="@dimen/dp_1"
+            android:background="@drawable/color_d8_a9"
+            android:layout_gravity="center_vertical"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -103,12 +113,14 @@
             android:textSize="@dimen/sp_14"
             android:textColor="@color/c_a9a9a9"
             android:layout_marginLeft="@dimen/dp_5"
-            android:layout_marginRight="@dimen/dp_5"/>
+            android:layout_marginRight="@dimen/dp_5"
+            android:layout_gravity="center_vertical"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="-"/>
+            android:layout_width="@dimen/dp_15"
+            android:layout_height="@dimen/dp_1"
+            android:background="@drawable/color_a9_d8"
+            android:layout_gravity="center_vertical"/>
 
     </LinearLayout>
 
@@ -202,30 +214,12 @@
         android:layout_marginBottom="@dimen/dp_10">
 
         <TextView
+            android:id="@+id/user_agreement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="登录或注册同意伴米旅行"
+            android:text="@string/useragreement"
             android:textSize="@dimen/sp_13"
             android:textColor="@color/c_999999"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dp_18"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="16dp"
-                android:text="用户协议"
-                android:textSize="@dimen/sp_13"
-                android:textColor="@color/c_fa6a13"/>
-
-            <View
-                android:layout_width="@dimen/dp_52"
-                android:layout_height="@dimen/dp_1"
-                android:background="@color/c_fa6a13"/>
-
-        </LinearLayout>
 
     </LinearLayout>
 

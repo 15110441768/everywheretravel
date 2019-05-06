@@ -64,4 +64,5 @@ public abstract class BaseActivity<V extends BaseView,P extends BasePresenter> e
             mLoadingDialog.dismiss();
         }
     }
+
 }

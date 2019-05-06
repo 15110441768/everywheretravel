@@ -26,6 +26,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -175,5 +176,29 @@ public class VerifyCodeFragment extends BaseFragment<VerifyCodeView, VerifyCodeP
     @Override
     public void hideLoading() {
 
+    }
+
+    @OnClick({R.id.back, R.id.count_down})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.back:
+                if (sendState!=null){
+                    sendState.send(true);
+                }
+                break;
+            case R.id.count_down:
+                break;
+        }
+    }
+
+    SendState sendState;
+
+    // 跳转到 VerifyCodeFragment （输入验证码界面）
+    public void setSendState(SendState sendState) {
+        this.sendState = sendState;
+    }
+
+    public interface SendState {
+        void send(boolean b);
     }
 }

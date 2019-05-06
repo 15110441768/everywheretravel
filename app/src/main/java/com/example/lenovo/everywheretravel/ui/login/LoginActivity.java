@@ -25,6 +25,9 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> {
     private FragmentManager manager;
     private ArrayList<Fragment> fragments;
     private LoginFragment loginFragment;
+    private final int TYPE_LOGIN = 0;
+    private final int TYPE_VERIFYCODE = 1;
+    private VerifyCodeFragment verifyCodeFragment;
 
     @Override
     protected LoginPresenter initPresenter() {
@@ -40,31 +43,54 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> {
     protected void initView() {
         super.initView();
         manager = getSupportFragmentManager();
+
         fragments = new ArrayList<>();
         loginFragment = new LoginFragment();
+        verifyCodeFragment = new VerifyCodeFragment();
         fragments.add(loginFragment);
-        fragments.add(new VerifyCodeFragment());
+        fragments.add(verifyCodeFragment);
+
+        // 一开始就显示登录界面
         addLoginFragment();
+
+        // 登录界面的接口回调，显示验证码界面
         loginFragment.setSendState(new LoginFragment.SendState() {
             @Override
             public void send(boolean b) {
                 if (b){
-                    Fragment fragment = fragments.get(1);
-                    FragmentTransaction transaction = manager.beginTransaction();
-                    if (!fragment.isAdded()){
-                        transaction.add(R.id.frame,fragment);
-                    }
-                    transaction.hide(fragments.get(0));
-                    transaction.show(fragments.get(1));
-                    transaction.commit();
+                    showHide(TYPE_VERIFYCODE,TYPE_LOGIN);
+                }
+            }
+        });
+
+        verifyCodeFragment.setSendState(new VerifyCodeFragment.SendState() {
+            @Override
+            public void send(boolean b) {
+                if (b){
+                    showHide(TYPE_LOGIN,TYPE_VERIFYCODE);
                 }
             }
         });
     }
 
+    private void showHide(int show,int hide) {
+        Fragment fragment = fragments.get(show);
+        FragmentTransaction transaction = manager.beginTransaction();
+        if (show==TYPE_VERIFYCODE){
+            transaction.addToBackStack(null);
+        }
+        if (!fragment.isAdded()){
+            transaction.add(R.id.frame,fragment);
+        }
+        transaction.hide(fragments.get(hide));
+        transaction.show(fragments.get(show));
+        transaction.commit();
+    }
+
     private void addLoginFragment() {
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.add(R.id.frame, fragments.get(0));
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 }
