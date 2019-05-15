@@ -35,7 +35,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
+// master 主干
 public class MainActivity extends BaseActivity<MainView, MainPresenter> implements MainView {
     @BindView(R.id.head_portrait)
     ImageButton headPortrait;
