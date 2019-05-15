@@ -4,14 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.login.fragment.LoginFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/c_ffffff">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="@dimen/dp_25"
+        android:layout_height="@dimen/dp_25"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_35"
+        android:background="@mipmap/back_white"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_23"
-        android:layout_marginTop="@dimen/dp_73"
+        android:layout_marginTop="@dimen/dp_13"
         android:text="你好，为了获取更好的服务"
         android:textSize="@dimen/sp_16"
         android:textColor="@color/c_fa6a13"/>
@@ -75,7 +85,7 @@
             android:id="@+id/send_code"
             android:layout_width="@dimen/dp_90"
             android:layout_height="@dimen/dp_30"
-            android:text="发送验证码"
+            android:text="@string/sendcode"
             android:textColor="@color/c_fefefe"
             android:layout_alignParentRight="true"
             android:textSize="@dimen/sp_14"
@@ -94,6 +104,7 @@
         android:layout_marginTop="@dimen/dp_5"/>
 
     <LinearLayout
+        android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_182"
@@ -125,6 +136,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_three"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

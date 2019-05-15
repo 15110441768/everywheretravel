@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".base.BaseApp"
@@ -18,16 +19,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.MainActivity"
-            android:theme="@style/NoAppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity
+            android:name=".ui.MainActivity"
+            android:theme="@style/NoAppTheme" />
         <activity
             android:name=".ui.login.LoginActivity"
+            android:launchMode="singleTask"
             android:theme="@style/FullScreen"
             android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
@@ -90,7 +87,61 @@
         <activity
             android:name=".ui.details.DetailsActivity"
             android:theme="@style/NoAppTheme" />
-        <activity android:name=".ui.agreement.AgreementActivity"
+        <activity
+            android:name=".ui.agreement.AgreementActivity"
+            android:theme="@style/NoAppTheme" />
+        <activity
+            android:name=".ui.personaldetails.PersonalDetailsActivity"
+            android:theme="@style/NoAppTheme" />
+        <activity
+            android:name=".ui.personaldetails.ChangeInfoActivity"
+            android:theme="@style/NoAppTheme"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity
+            android:name=".ui.favorite.FavoriteActivity"
+            android:theme="@style/NoAppTheme" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.baidu.upload.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity
+            android:name=".ui.SplashActivity"
+            android:theme="@style/SplashStyle">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.IntroductionActivity"
+            android:theme="@style/NoAppTheme" />
+        <activity
+            android:name=".ui.main.DetailsPageActivity"
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".ui.main.FollowActivity"
+            android:theme="@style/NoAppTheme" />
+        <activity
+            android:name=".ui.main.WithMDetailsActivity"
+            android:theme="@style/NoAppTheme" />
+
+        <meta-data
+            android:name="channel"
+            android:value="" />
+
+        <activity
+            android:name=".ui.main.AllReviewsActivity"
+            android:theme="@style/NoAppTheme" />
+        <activity
+            android:name=".ui.main.BundlesActivity"
             android:theme="@style/NoAppTheme"></activity>
     </application>
 

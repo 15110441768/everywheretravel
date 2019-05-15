@@ -4,7 +4,7 @@ import com.example.lenovo.everywheretravel.base.BaseModel;
 import com.example.lenovo.everywheretravel.base.BaseObserver;
 import com.example.lenovo.everywheretravel.base.CallBack;
 import com.example.lenovo.everywheretravel.net.MyService;
-import com.example.lenovo.everywheretravel.ui.login.bean.LoginInfo;
+import com.example.lenovo.everywheretravel.bean.LoginInfo;
 import com.example.lenovo.everywheretravel.utils.HttpUtils;
 import com.example.lenovo.everywheretravel.utils.RxUtils;
 

@@ -1,18 +1,34 @@
 package com.example.lenovo.everywheretravel.net;
 
+import com.example.lenovo.everywheretravel.base.Constants;
+import com.example.lenovo.everywheretravel.bean.AllReviewsBean;
+import com.example.lenovo.everywheretravel.bean.BundlesContentBean;
+import com.example.lenovo.everywheretravel.bean.CircuitBean;
+import com.example.lenovo.everywheretravel.bean.MyCollectBean;
 import com.example.lenovo.everywheretravel.bean.VerifyCodeBean;
-import com.example.lenovo.everywheretravel.ui.login.bean.LoginInfo;
-import com.example.lenovo.everywheretravel.ui.main.bean.MainContentBean;
+import com.example.lenovo.everywheretravel.bean.LoginInfo;
+import com.example.lenovo.everywheretravel.bean.DetailsPageBean;
+import com.example.lenovo.everywheretravel.bean.MainContentBean;
+import com.example.lenovo.everywheretravel.bean.PersonalInfoBean;
+import com.example.lenovo.everywheretravel.bean.WithMBean;
+import com.example.lenovo.everywheretravel.bean.WithMDetailsBean;
+import com.example.lenovo.everywheretravel.utils.SpUtil;
 
 import io.reactivex.Observable;
+import okhttp3.ResponseBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface MyService {
+
+    String token= (String) SpUtil.getParam(Constants.TOKEN,"");
+
+    int VERIFY_CODE =200;
     String sBaseUrl = "http://yun918.cn/study/public/index.php/";
 
     /**
@@ -54,6 +70,63 @@ public interface MyService {
 
     String homeUrl="http://api.banmi.com/api/3.0/";
     @GET("content/routesbundles?")
-    @Headers("banmi-app-token:JVy0IvZamK7f7FBZLKFtoniiixKMlnnJ6dWZ6NlsY4HGsxcAA9qvFo8yacHCKHE8YAcd0UF9L59nEm7zk9AUixee0Hl8EeWA880c0ikZBW0KEYuxQy5Z9NP3BNoBi3o3Q0g")
-    Observable<MainContentBean> getHomeData(@Query("page") int page);
+    Observable<MainContentBean> getHomeData(@Query("page") int page, @Header("banmi-app-token") String token);
+
+    @GET("banmi?")
+    Observable<WithMBean> getWithMData(@Query("page") int page, @Header("banmi-app-token") String token);
+
+    @POST("account/updateInfo")
+    @FormUrlEncoded
+    Observable<ResponseBody> upDateInfo(@Field("userName") String userName,
+                                        @Field("description") String description,
+                                        @Field("gender") String gender,
+                                        @Field("photo") String photo,
+                                        @Header("banmi-app-token") String token);
+
+    @GET("account/info")
+    Observable<PersonalInfoBean> getPersonalInfo(@Header("banmi-app-token") String token);
+
+    // 首页的详情页
+    @GET("content/routes/{id}")
+    Observable<DetailsPageBean> getDetailsPageData(@Path("id") int id, @Header("banmi-app-token") String token);
+
+    // 首页详情页 取消收藏
+    @POST("content/routes/{id}/dislike")
+    Observable<ResponseBody> cancelCollection(@Path("id") int id, @Header("banmi-app-token") String token);
+
+    // 首页详情页 收藏
+    @POST("content/routes/{id}/like")
+    Observable<ResponseBody> collect(@Path("id") int id, @Header("banmi-app-token") String token);
+
+    // 伴米 关注
+    @POST("banmi/{id}/follow")
+    Observable<ResponseBody> follow(@Path("id") int id, @Header("banmi-app-token") String token);
+
+    // 伴米 取消关注
+    @POST("banmi/{id}/unfollow")
+    Observable<ResponseBody> unfollow(@Path("id") int id, @Header("banmi-app-token") String token);
+
+    // 我的关注
+    @GET("account/followedBanmi?")
+    Observable<WithMBean> getFollowData(@Query("page") int page, @Header("banmi-app-token") String token);
+
+    // 我的收藏
+    @GET("account/collectedRoutes?")
+    Observable<MyCollectBean> getCollectData(@Query("page") int page, @Header("banmi-app-token") String token);
+
+    // 伴米动态
+    @GET("banmi/{id}?")
+    Observable<WithMDetailsBean> getWithMDetailsData(@Path("id") int id,@Query("page") int page,@Header("banmi-app-token") String token);
+
+    // 伴米详情线路
+    @GET("banmi/{id}/routes?page=1")
+    Observable<CircuitBean> getCircuitData(@Path("id") int id, @Query("page") int page, @Header("banmi-app-token") String token);
+
+    // 线路详情--全部评价
+    @GET("content/routes/{id}/reviews?")
+    Observable<AllReviewsBean> getAllReviewsData(@Path("id") int id, @Query("page") int page, @Header("banmi-app-token") String token);
+
+    // 获取专题列表
+    @GET("content/bundles")
+    Observable<BundlesContentBean> getBundlesData(@Header("banmi-app-token") String token);
 }

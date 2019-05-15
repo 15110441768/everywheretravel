@@ -1,6 +1,5 @@
 package com.example.lenovo.everywheretravel.ui.details;
 
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -10,13 +9,12 @@ import com.example.lenovo.everywheretravel.R;
 import com.example.lenovo.everywheretravel.base.BaseActivity;
 import com.example.lenovo.everywheretravel.presenter.details.DetailsPresenter;
 import com.example.lenovo.everywheretravel.ui.details.adapter.DetailsRecyclerViewAdapter;
-import com.example.lenovo.everywheretravel.ui.details.bean.DetailsBean;
+import com.example.lenovo.everywheretravel.bean.DetailsBean;
 import com.example.lenovo.everywheretravel.view.details.DetailsView;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class DetailsActivity extends BaseActivity<DetailsView, DetailsPresenter> implements DetailsView {

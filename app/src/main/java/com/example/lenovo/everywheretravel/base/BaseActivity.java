@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.lenovo.everywheretravel.utils.ToastUtil;
 import com.example.lenovo.everywheretravel.widget.LoadingDialog;
+import com.jaeger.library.StatusBarUtil;
 
 import butterknife.ButterKnife;
 
@@ -30,7 +32,8 @@ public abstract class BaseActivity<V extends BaseView,P extends BasePresenter> e
     protected abstract P initPresenter();
 
     protected void initView() {
-
+        //亮色的模式,会讲状态栏文字修改为黑色的
+        StatusBarUtil.setLightMode(this);
     }
 
     protected void initListener() {
@@ -63,6 +66,11 @@ public abstract class BaseActivity<V extends BaseView,P extends BasePresenter> e
         if (mLoadingDialog != null && mLoadingDialog.isShowing()){
             mLoadingDialog.dismiss();
         }
+    }
+
+    @Override
+    public void toastShort(String msg) {
+        ToastUtil.showShort(msg);
     }
 
 }

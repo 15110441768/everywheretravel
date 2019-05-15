@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.lenovo.everywheretravel.utils.ToastUtil;
+import com.example.lenovo.everywheretravel.widget.LoadingDialog;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -15,6 +18,7 @@ public abstract class BaseFragment<V extends BaseView,P extends BasePresenter> e
 
     private Unbinder unbinder;
     protected P basePresenter;
+    private LoadingDialog mLoadingDialog;
 
     @Nullable
     @Override
@@ -48,6 +52,26 @@ public abstract class BaseFragment<V extends BaseView,P extends BasePresenter> e
     protected abstract P initPresenter();
 
     protected abstract int initLayoutId();
+
+    @Override
+    public void showLoading() {
+        if (mLoadingDialog == null){
+            mLoadingDialog = new LoadingDialog(getContext());
+        }
+        mLoadingDialog.show();
+    }
+
+    @Override
+    public void hideLoading() {
+        if (mLoadingDialog != null && mLoadingDialog.isShowing()){
+            mLoadingDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void toastShort(String msg) {
+        ToastUtil.showShort(msg);
+    }
 
     @Override
     public void onDestroyView() {

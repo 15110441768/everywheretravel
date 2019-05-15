@@ -31,7 +31,7 @@ public class BaseApp extends Application {
         UMConfigure.init(this,"5cca9b3b3fc1955c150003b6"
                 ,"umeng", UMConfigure.DEVICE_TYPE_PHONE,"");//58edcfeb310c93091c000be2 5965ee00734be40b580001a0
 
-
+        UMConfigure.setLogEnabled(true);
         PlatformConfig.setWeixin("wxdc1e388c3822c80b", "3baf1193c85774b3fd9d18447d76cab0");
         //豆瓣RENREN平台目前只能在服务器端配置
         PlatformConfig.setSinaWeibo("1531404089", "02e7b034b4ea812ab0af6f142596c1dc","http://sns.whalecloud.com");

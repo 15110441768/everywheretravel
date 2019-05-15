@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.IntroductionActivity"
+    android:fitsSystemWindows="true">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
+
+    <com.example.lenovo.everywheretravel.widget.PreviewIndicator
+        android:id="@+id/previewIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_61"
+        android:layout_centerHorizontal="true">
+
+    </com.example.lenovo.everywheretravel.widget.PreviewIndicator>
+
+    <Button
+        android:id="@+id/experience"
+        android:layout_width="@dimen/dp_127"
+        android:layout_height="@dimen/dp_40"
+        android:text="@string/experience"
+        android:textSize="@dimen/sp_16"
+        android:textColor="@color/c_ffffff"
+        android:background="@drawable/color_ff9d53_fa6a13"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_43"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>

@@ -6,11 +6,13 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_450"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_20"
         android:layout_marginRight="@dimen/dp_20"
-        android:layout_marginTop="@dimen/dp_20"
-        app:cardCornerRadius="@dimen/dp_20">
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginBottom="@dimen/dp_10"
+        app:cardCornerRadius="@dimen/dp_20"
+        app:cardElevation="@dimen/dp_5">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -19,14 +21,14 @@
             <ImageView
                 android:id="@+id/cardURL"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/dp_450"
                 android:scaleType="centerCrop"/>
 
             <RelativeLayout
                 android:id="@+id/rl"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_116"
-                android:background="@color/c_60FFFFFF">
+                android:background="@color/c_80FFFFFF">
 
                 <TextView
                     android:id="@+id/city"
@@ -35,7 +37,11 @@
                     android:layout_marginLeft="@dimen/dp_15"
                     android:layout_marginTop="@dimen/dp_27"
                     android:textSize="@dimen/sp_26"
-                    android:textColor="@color/c_373737"/>
+                    android:textColor="@color/c_373737"
+                    android:maxLines="1"
+                    android:maxEms="4"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"/>
 
                 <ImageView
                     android:id="@+id/positioning"
@@ -44,7 +50,7 @@
                     android:layout_toRightOf="@id/city"
                     android:layout_marginLeft="@dimen/dp_8"
                     android:layout_marginTop="@dimen/dp_43"
-                    android:background="@mipmap/ic_launcher"/>
+                    android:background="@drawable/ic_location"/>
 
                 <TextView
                     android:id="@+id/provinces"
@@ -73,7 +79,11 @@
                     android:layout_marginLeft="@dimen/dp_15"
                     android:layout_below="@id/city"
                     android:textSize="@dimen/sp_18"
-                    android:textColor="@color/c_636363"/>
+                    android:textColor="@color/c_636363"
+                    android:maxLines="1"
+                    android:maxEms="5"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"/>
 
                 <TextView
                     android:id="@+id/people_buy"

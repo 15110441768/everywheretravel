@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.lenovo.everywheretravel.R;
-import com.example.lenovo.everywheretravel.ui.details.bean.DetailsBean;
+import com.example.lenovo.everywheretravel.bean.DetailsBean;
 
 import java.util.ArrayList;
 

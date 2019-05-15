@@ -35,4 +35,16 @@ public interface Constants {
     String EMAIL = "email";
     String PHOTO = "photo";
     String PHONE = "phone";
+    String AVATAR_HD = "avatar_hd";
+    String TYPE = "type";
+    String USER_NAME = "user_name";
+    String VERIFY_CODE = "verify_code";
+    String PERSONALIZED_SIGNATURE = "personalized_signature";
+    String CONTENT = "contnet";
+    String INTRODUCTION = "introduction";
+    String ID = "id";
+    String BALANCE = "balance";
+
+    String URL = "url";
+    String TITLE = "title";
 }

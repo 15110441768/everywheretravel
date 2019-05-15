@@ -6,11 +6,13 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_450"
+        android:layout_height="@dimen/dp_150"
         android:layout_marginLeft="@dimen/dp_20"
         android:layout_marginRight="@dimen/dp_20"
-        android:layout_marginTop="@dimen/dp_20"
-        app:cardCornerRadius="@dimen/dp_20">
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginBottom="@dimen/dp_10"
+        app:cardCornerRadius="@dimen/dp_20"
+        app:cardElevation="@dimen/dp_5">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -20,25 +22,7 @@
                 android:id="@+id/cardURL"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"/>
-
-            <RelativeLayout
-                android:id="@+id/rl"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_116"
-                android:background="@color/c_60FFFFFF">
-
-                <TextView
-                    android:id="@+id/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_15"
-                    android:layout_marginTop="@dimen/dp_64"
-                    android:layout_below="@id/city"
-                    android:textSize="@dimen/sp_18"
-                    android:textColor="@color/c_636363"/>
-
-            </RelativeLayout>
+                android:scaleType="fitXY"/>
 
         </RelativeLayout>
 
