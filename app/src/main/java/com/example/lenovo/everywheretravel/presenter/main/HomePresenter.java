@@ -3,7 +3,7 @@ package com.example.lenovo.everywheretravel.presenter.main;
 import com.example.lenovo.everywheretravel.base.BasePresenter;
 import com.example.lenovo.everywheretravel.base.CallBack;
 import com.example.lenovo.everywheretravel.model.main.HomeModel;
-import com.example.lenovo.everywheretravel.ui.main.bean.MainContentBean;
+import com.example.lenovo.everywheretravel.bean.MainContentBean;
 import com.example.lenovo.everywheretravel.view.main.HomeView;
 
 public class HomePresenter extends BasePresenter<HomeView> {
@@ -16,13 +16,17 @@ public class HomePresenter extends BasePresenter<HomeView> {
         mModels.add(homeModel);
     }
 
-    public void getHomeData(int page) {
-        homeModel.getHomeData(page, new CallBack<MainContentBean>() {
+    public void getHomeData(int page,String token) {
+        homeModel.getHomeData(page,token, new CallBack<MainContentBean>() {
             @Override
             public void onSuccess(MainContentBean mainContentBean) {
-                if (mainContentBean.getResult()!=null){
+                if (mainContentBean!=null&&mainContentBean.getResult()!=null){
                     if (view!=null){
                         view.onSuccess(mainContentBean);
+                    }
+                }else {
+                    if (view!=null){
+                        view.onFail("失败");
                     }
                 }
             }

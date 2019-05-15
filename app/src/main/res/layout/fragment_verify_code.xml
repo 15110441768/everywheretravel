@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.login.fragment.VerifyCodeFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/c_ffffff">
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout

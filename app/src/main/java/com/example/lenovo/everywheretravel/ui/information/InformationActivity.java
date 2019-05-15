@@ -2,7 +2,6 @@ package com.example.lenovo.everywheretravel.ui.information;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
@@ -12,7 +11,7 @@ import com.example.lenovo.everywheretravel.R;
 import com.example.lenovo.everywheretravel.base.BaseActivity;
 import com.example.lenovo.everywheretravel.presenter.information.InformationPresenter;
 import com.example.lenovo.everywheretravel.ui.information.adapter.InformationRecyclerViewAdapter;
-import com.example.lenovo.everywheretravel.ui.information.bean.InformationBean;
+import com.example.lenovo.everywheretravel.bean.InformationBean;
 import com.example.lenovo.everywheretravel.view.information.InformationView;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenu;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuBridge;
@@ -24,7 +23,6 @@ import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class InformationActivity extends BaseActivity<InformationView, InformationPresenter> implements InformationView {
     @BindView(R.id.recyclerview)

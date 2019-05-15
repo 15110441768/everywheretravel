@@ -3,35 +3,40 @@ package com.example.lenovo.everywheretravel.model;
 import com.example.lenovo.everywheretravel.base.BaseModel;
 import com.example.lenovo.everywheretravel.base.BaseObserver;
 import com.example.lenovo.everywheretravel.base.CallBack;
-import com.example.lenovo.everywheretravel.bean.VerifyCodeBean;
 import com.example.lenovo.everywheretravel.net.MyService;
+import com.example.lenovo.everywheretravel.bean.PersonalInfoBean;
 import com.example.lenovo.everywheretravel.utils.HttpUtils;
 import com.example.lenovo.everywheretravel.utils.RxUtils;
+import com.example.lenovo.everywheretravel.utils.ToastUtil;
 
 import io.reactivex.disposables.Disposable;
 
 public class MainModel extends BaseModel {
 
-    private static final String TAG = "MainModel";
 
-    public void getVerifyCode(final CallBack<VerifyCodeBean> callBack) {
-        MyService service = HttpUtils.getInstance().getApiserver(MyService.sBaseUrl, MyService.class);
-        service.getVerifyCode().compose(RxUtils.<VerifyCodeBean>rxObserableSchedulerHelper())
-                .subscribe(new BaseObserver<VerifyCodeBean>() {
-                    @Override
-                    public void onNext(VerifyCodeBean verifyCodeBean) {
-                        callBack.onSuccess(verifyCodeBean);
-                    }
+    public void getPersonalDetails(String token, final CallBack<PersonalInfoBean> callBack) {
+        if (!token.isEmpty()){
+            MyService service = HttpUtils.getInstance().getApiserver(MyService.homeUrl, MyService.class);
+            service.getPersonalInfo(token).compose(RxUtils.<PersonalInfoBean>rxObserableSchedulerHelper())
+                    .subscribe(new BaseObserver<PersonalInfoBean>() {
+                        @Override
+                        public void onNext(PersonalInfoBean personalInfoBean) {
+                            callBack.onSuccess(personalInfoBean);
+                        }
 
-                    @Override
-                    public void error(String msg) {
+                        @Override
+                        public void error(String msg) {
+                            callBack.onFail(msg);
+                        }
 
-                    }
+                        @Override
+                        protected void subscribe(Disposable d) {
 
-                    @Override
-                    protected void subscribe(Disposable d) {
-                        addDisposable(d);
-                    }
-                });
+                        }
+                    });
+        }else {
+            ToastUtil.showShort("暂无数据");
+        }
+
     }
 }

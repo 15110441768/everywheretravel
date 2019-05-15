@@ -8,7 +8,11 @@ import com.example.lenovo.everywheretravel.base.BasePresenter;
 import com.example.lenovo.everywheretravel.base.CallBack;
 import com.example.lenovo.everywheretravel.base.Constants;
 import com.example.lenovo.everywheretravel.model.login.LoginFraModel;
-import com.example.lenovo.everywheretravel.ui.login.bean.LoginInfo;
+import com.example.lenovo.everywheretravel.model.login.VerifyCodeModel;
+import com.example.lenovo.everywheretravel.net.MyService;
+import com.example.lenovo.everywheretravel.bean.LoginInfo;
+import com.example.lenovo.everywheretravel.bean.VerifyCodeBean;
+import com.example.lenovo.everywheretravel.utils.Logger;
 import com.example.lenovo.everywheretravel.utils.SpUtil;
 import com.example.lenovo.everywheretravel.utils.ToastUtil;
 import com.example.lenovo.everywheretravel.view.login.LoginFraView;
@@ -23,11 +27,14 @@ public class LoginFraPresenter extends BasePresenter<LoginFraView> {
 
     private static final String TAG = "LoginFraPresenter";
     private LoginFraModel loginFraModel;
+    private VerifyCodeModel verifyCodeModel;
 
     @Override
     protected void initModel() {
         loginFraModel = new LoginFraModel();
+        verifyCodeModel = new VerifyCodeModel();
         mModels.add(loginFraModel);
+        mModels.add(verifyCodeModel);
     }
 
     // 登录
@@ -45,7 +52,7 @@ public class LoginFraPresenter extends BasePresenter<LoginFraView> {
          */
         @Override
         public void onStart(SHARE_MEDIA platform) {
-
+            Log.e(TAG, "onStart: " + platform);
         }
 
         /**
@@ -56,16 +63,26 @@ public class LoginFraPresenter extends BasePresenter<LoginFraView> {
          */
         @Override
         public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
-
+//            Log.e(TAG, "onComplete: " + platform);
             if (platform==SHARE_MEDIA.SINA){
                 loginSina(data.get("uid"));
                 Set<Map.Entry<String, String>> set = data.entrySet();
                 for (Map.Entry<String, String> entry : set) {
                     String key = entry.getKey();
                     String value = entry.getValue();
-                    Log.e(TAG, "onComplete: " + key + "------" + value);
+                    if (key.equals("avatar_hd")){
+                        SpUtil.setParam(Constants.AVATAR_HD,value);
+                    }
+                    if (key.equals("screen_name")){
+                        SpUtil.setParam(Constants.USER_NAME,value);
+                    }
+                    if (key.equals("gender")){
+                        SpUtil.setParam(Constants.GENDER,value);
+                    }
+//                    Log.e(TAG, "onComplete: " + key + "------" + value);
                 }
-//                ToastUtil.showShort("成功了");
+
+                ToastUtil.showShort("成功了");
             }
 
         }
@@ -79,6 +96,7 @@ public class LoginFraPresenter extends BasePresenter<LoginFraView> {
         @Override
         public void onError(SHARE_MEDIA platform, int action, Throwable t) {
             ToastUtil.showShort("失败：" + t.getMessage());
+//            Log.e(TAG, "onError: " + t.getMessage());
         }
 
         /**
@@ -89,6 +107,7 @@ public class LoginFraPresenter extends BasePresenter<LoginFraView> {
         @Override
         public void onCancel(SHARE_MEDIA platform, int action) {
             ToastUtil.showShort("取消了");
+//            Log.e(TAG, "onCancel: " + platform);
         }
     };
 
@@ -125,11 +144,34 @@ public class LoginFraPresenter extends BasePresenter<LoginFraView> {
      */
     private void saveUserInfo(LoginInfo.ResultBean result) {
         SpUtil.setParam(Constants.TOKEN,result.getToken());
+//        Log.e(TAG, "saveUserInfo: " + result.getToken());
         SpUtil.setParam(Constants.DESC,result.getDescription());
         SpUtil.setParam(Constants.USERNAME,result.getUserName());
         SpUtil.setParam(Constants.GENDER,result.getGender());
         SpUtil.setParam(Constants.EMAIL,result.getEmail());
         SpUtil.setParam(Constants.PHOTO,result.getPhoto());
         SpUtil.setParam(Constants.PHONE,result.getPhone());
+    }
+
+    public void getVerifyCode() {
+        verifyCodeModel.getVerifyCode(new CallBack<VerifyCodeBean>() {
+            @Override
+            public void onSuccess(VerifyCodeBean verifyCodeBean) {
+                if (verifyCodeBean!=null&&verifyCodeBean.getCode()== MyService.VERIFY_CODE){
+                    if (view!=null){
+                        view.onSuccess(verifyCodeBean);
+                    }
+                }else {
+                    if (view!=null){
+                        view.onFail(BaseApp.getRes().getString(R.string.get_verify_fail));
+                    }
+                }
+            }
+
+            @Override
+            public void onFail(String string) {
+                Logger.println(string);
+            }
+        });
     }
 }

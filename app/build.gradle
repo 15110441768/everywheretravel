@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao' // apply plugin
+
 
 android {
     compileSdkVersion 28
@@ -12,9 +14,14 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    greendao {
+        schemaVersion 1  // 数据库的版本号
+        daoPackage 'com.example.lenovo.everywheretravel.dao'  // 包名
+        targetGenDir 'src/main/java' // 存放的目录地址
     }
     signingConfigs {
         debug {
@@ -30,6 +37,7 @@ android {
             keyPassword "123456"
         }
     }
+
 }
 
 dependencies {
@@ -104,4 +112,11 @@ dependencies {
 
     // 状态栏
     implementation 'com.jaeger.statusbarutil:library:1.5.1'
+
+    //SmartRefreshLayout
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-7'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.4-7'
+
+    // PhotoView
+    implementation 'com.bm.photoview:library:1.4.1'
 }

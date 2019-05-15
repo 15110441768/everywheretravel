@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_marginBottom="@dimen/dp_10"
+        app:cardCornerRadius="@dimen/dp_6"
+        app:cardElevation="@dimen/dp_5">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_120">
+
+            <ImageView
+                android:id="@+id/photo"
+                android:layout_width="@dimen/dp_120"
+                android:layout_height="@dimen/dp_120"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_17"
+                android:layout_marginTop="@dimen/dp_17"
+                android:layout_toRightOf="@id/photo"
+                android:textSize="@dimen/sp_22"
+                android:textColor="@color/c_333333"/>
+
+            <ImageView
+                android:id="@+id/follow"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_18"
+                android:layout_alignParentRight="true"
+                android:background="@mipmap/follow_unselected"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_24"/>
+
+            <TextView
+                android:id="@+id/following"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_12"
+                android:textColor="@color/c_999999"
+                android:layout_marginLeft="@dimen/dp_17"
+                android:layout_toRightOf="@id/photo"
+                android:layout_below="@id/name"/>
+
+            <ImageView
+                android:id="@+id/icon_location"
+                android:layout_width="@dimen/dp_10"
+                android:layout_height="@dimen/dp_12"
+                android:background="@drawable/ic_location"
+                android:layout_toRightOf="@id/photo"
+                android:layout_marginLeft="@dimen/dp_17"
+                android:layout_above="@id/icon_occupation"
+                android:layout_marginBottom="@dimen/dp_9"/>
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_12"
+                android:textColor="@color/c_999999"
+                android:layout_toRightOf="@id/icon_location"
+                android:layout_above="@id/occupation"
+                android:layout_marginLeft="@dimen/dp_7"
+                android:layout_marginBottom="@dimen/dp_7"/>
+
+            <ImageView
+                android:id="@+id/icon_occupation"
+                android:layout_width="@dimen/dp_10"
+                android:layout_height="@dimen/dp_12"
+                android:background="@drawable/ic_documents"
+                android:layout_toRightOf="@id/photo"
+                android:layout_marginLeft="@dimen/dp_17"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/dp_17"/>
+
+            <TextView
+                android:id="@+id/occupation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_12"
+                android:textColor="@color/c_999999"
+                android:layout_toRightOf="@id/icon_occupation"
+                android:layout_marginLeft="@dimen/dp_7"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/dp_16"
+                android:ellipsize="end"
+                android:maxLines="1"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
