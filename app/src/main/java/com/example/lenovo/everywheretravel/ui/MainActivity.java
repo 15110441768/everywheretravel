@@ -49,7 +49,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
+// develop分支
 public class MainActivity extends BaseActivity<MainView, MainPresenter> implements MainView, View.OnClickListener {
     private static final String TAG = "MainActivity";
 
