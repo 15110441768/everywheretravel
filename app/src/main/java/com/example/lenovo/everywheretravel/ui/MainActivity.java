@@ -84,7 +84,7 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter> implemen
 
 //    @BindView(R.id.btn)
 //    Button btn;
-    String b="a";
+    String b="123";
 
     @Override
     protected MainPresenter initPresenter() {
