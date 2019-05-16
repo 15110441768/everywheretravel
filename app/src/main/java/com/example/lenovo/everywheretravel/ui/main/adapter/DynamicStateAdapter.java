@@ -1,15 +1,18 @@
 package com.example.lenovo.everywheretravel.ui.main.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.bm.library.PhotoView;
@@ -44,8 +47,6 @@ public class DynamicStateAdapter extends RecyclerView.Adapter<DynamicStateAdapte
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
-
-        viewHolder.photoview.enable();
 
         final WithMDetailsBean.ResultBean.ActivitiesBean activitiesBean = mRecyclerviewList.get(i);
         // 评论发布的时间
@@ -119,9 +120,7 @@ public class DynamicStateAdapter extends RecyclerView.Adapter<DynamicStateAdapte
         viewHolder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewHolder.photoview.setVisibility(View.VISIBLE);
-
-                Glide.with(mContext).load(activitiesBean.getImages().get(0)).into(viewHolder.photoview);
+                initPop(i);
             }
         });
 
@@ -160,7 +159,20 @@ public class DynamicStateAdapter extends RecyclerView.Adapter<DynamicStateAdapte
     }
 
     private void initPop(int position){
-
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_dynamic_pop, null);
+        PhotoView photoview = view.findViewById(R.id.photoview);
+        photoview.enable();
+        Glide.with(mContext).load(mRecyclerviewList.get(position).getImages().get(0)).into(photoview);
+        final PopupWindow popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(mContext.getResources().getColor(R.color.c_60000000)));
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.showAtLocation(view, Gravity.CENTER,0,0);
+        photoview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+            }
+        });
     }
 
     @Override
@@ -190,7 +202,6 @@ public class DynamicStateAdapter extends RecyclerView.Adapter<DynamicStateAdapte
         private ImageView comment_text;
         private TextView replyCount_text;
         private CardView cardview_text;
-        private PhotoView photoview;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -214,7 +225,6 @@ public class DynamicStateAdapter extends RecyclerView.Adapter<DynamicStateAdapte
             comment_text = itemView.findViewById(R.id.comment_text);
             replyCount_text = itemView.findViewById(R.id.replyCount_text);
             cardview_text = itemView.findViewById(R.id.cardview_text);
-            photoview = itemView.findViewById(R.id.photoview);
         }
     }
 }

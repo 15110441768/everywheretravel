@@ -16,6 +16,20 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            android.applicationVariants.all { variant ->
+                variant.outputs.all {
+                    outputFileName = "EveryWhereTrip_${defaultConfig.versionName}_${releaseTime()}.apk"
+                }
+            }
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            android.applicationVariants.all { variant ->
+                variant.outputs.all {
+                    outputFileName = "EveryWhereTrip_${defaultConfig.versionName}_${releaseTime()}.apk"
+                }
+            }
         }
     }
     greendao {
@@ -38,6 +52,11 @@ android {
         }
     }
 
+}
+
+// 获取当前系统时间
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
 }
 
 dependencies {

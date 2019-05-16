@@ -67,6 +67,7 @@ public class WithMFragment extends BaseFragment<WithMView, WithMPresenter> imple
         withMRecyclerViewAdapter.setNotifyAdapter(new WithMRecyclerViewAdapter.NotifyAdapter() {
             @Override
             public void follow(int id,int position) {
+                showLoading();
                 basePresenter.follow(id,mToken);
                 newPosition=position;
 //                recyclerviewList.clear();
@@ -75,6 +76,7 @@ public class WithMFragment extends BaseFragment<WithMView, WithMPresenter> imple
 
             @Override
             public void unfollow(int id,int position) {
+                showLoading();
                 basePresenter.unfollow(id,mToken);
                 newPosition=position;
 //                recyclerviewList.clear();
@@ -112,6 +114,7 @@ public class WithMFragment extends BaseFragment<WithMView, WithMPresenter> imple
     public void onFollowSuccess(String string) {
         toastShort(string);
         withMRecyclerViewAdapter.notifyData(newPosition);
+        hideLoading();
 //        initData();
     }
 
@@ -124,6 +127,7 @@ public class WithMFragment extends BaseFragment<WithMView, WithMPresenter> imple
     public void onUnfollowSuccess(String string) {
         toastShort(string);
         withMRecyclerViewAdapter.notifyData(newPosition);
+        hideLoading();
 //        initData();
     }
 

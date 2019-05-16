@@ -63,13 +63,6 @@ public class DynamicStateFragment extends BaseFragment<DynamicStateView, Dynamic
         return R.layout.fragment_dynamic_state;
     }
 
-    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity()) {
-        @Override
-        public boolean canScrollVertically() {
-            return false;
-        }
-    };
-
     @Override
     protected void initView() {
         super.initView();
